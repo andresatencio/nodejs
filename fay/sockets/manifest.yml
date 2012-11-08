@@ -1,0 +1,19 @@
+---
+applications:
+  .:
+    name: sockets
+    framework:
+      name: node
+      info:
+        mem: 64M
+        description: Node.js Application
+        exec: 
+    infra: aws
+    url: ok
+    mem: '256'
+    instances: 1
+    services:
+      cosas-django-mysql-61369:
+        type: mysql
+      baseloca:
+        type: mongodb

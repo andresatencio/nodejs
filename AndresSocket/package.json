@@ -1,0 +1,16 @@
+{
+  "name": "sockets",
+  "version": "0.0.1-5",
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*",
+    "websocket-server": "*"
+  },
+  "subdomain": "andresatencio.AndresSocket",
+  "scripts": {
+    "start": "app.js"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
+}

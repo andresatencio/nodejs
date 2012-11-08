@@ -1,0 +1,15 @@
+{
+  "name": "servidorchoto",
+  "version": "0.0.1-13",
+  "dependencies": {
+    "socket.io": "",
+    "websocket-server": ""
+  },
+  "subdomain": "andresatencio.servidorchoto",
+  "scripts": {
+    "start": "server.js"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
+}

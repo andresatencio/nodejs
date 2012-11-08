@@ -1,0 +1,11 @@
+{
+  "name": "holanode",
+  "subdomain": "andresatencio.holanode",
+  "scripts": {
+    "start": "app.js"
+  },
+  "version": "0.0.0-2",
+  "engines": {
+    "node": "0.8.x"
+  }
+}

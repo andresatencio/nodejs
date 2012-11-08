@@ -1,0 +1,16 @@
+{
+  "name": "sox",
+  "version": "0.0.1-6",
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*",
+    "websocket-server": "*"
+  },
+  "subdomain": "andresatencio.sox",
+  "scripts": {
+    "start": "app.js"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
+}

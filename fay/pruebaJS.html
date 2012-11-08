@@ -1,0 +1,42 @@
+<DOCTYPE! html>
+<html>
+<head>
+	<script type="text/javascript">
+		function welcome() {
+		alert("Welcome!!!");
+			}
+		document.getElementById("bt").addEventListener('click', welcome, false);
+		///////////////
+		function nuevo_evento(elemento, evento, funcion) {
+      if (elemento.addEventListener) {
+            elemento.addEventListener(evento, function, false);
+      } else {
+            elemento.attachEvent("on"+evento, function);
+      }
+		}
+		// Obtenemos los elementos DIV a los que queremos añadir nuestro evento onclick
+		var divs = document.getElementById("frases").getElementsByTagName("DIV");
+		// Recorremos todos los divs
+		for (var i=0; i<divs.length; i++) {
+		      // Añadimos el evento onclick al div
+		      nuevo_evento(divs[i], "click", function(){
+		            // Hacemos que muestre el contenido del DIV
+		           alert(this.innerHTML);
+		      });
+		}
+
+
+	</script>
+	<title>event listener</title>
+</head>
+<body>
+	<button id="bt" >touch</button>
+	
+	<div id="frases">
+      <div>Hola mundo!</div>
+      <div>Foo bar</div>
+      <div>Lorem Ipsum</div>
+	</div>
+</body>
+</html>
+

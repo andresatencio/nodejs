@@ -1,0 +1,14 @@
+{
+  "name": "sockets",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "",
+    "jade": "",
+    "websocket-server": "",
+    "socket.io": ""
+
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chat whit node.js</title>
+    <link rel="stylesheet" type="text/css" href="chat1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript">
+    var socket = io.connect('http://localhost:8080');
+
+    $(document).ready(function(){
+        $("#buttonLogin").click(function(event){
+            var nickname = $("#nickname").val();
+            if(nickname){ 
+                socket.emit('newUser', nickname);
+                $("#buttonLogout").show();
+                $("#buttonLogin").hide();
+                $("label").hide();
+                $("#nickname").hide();
+                $("#msg").removeAttr("disabled");
+                $("#send").removeAttr("disabled");
+            }else{
+                alert("ingese su nickname");
+            }
+        });
+
+        $("#buttonLogout").click(function(event){
+            socket.emit('logout');
+            $("#msg").attr("disabled","disabled");
+            $("#send").attr("disabled","disabled");
+            $("#buttonLogin").show();
+            $("label").show();
+            $("#nickname").show();
+            $("#buttonLogout").hide();
+        });
+
+        $('#send').click( function() {
+            var msg = $('#msg').val();
+            $('#msg').val('');
+            socket.emit('sendChat', msg);
+        });
+
+        $('#msg').keypress(function(event) {
+            if(event.which == 13) {
+                $(this).blur();
+                $('#send').focus().click();
+                $(this).focus();
+            }
+        });
+        socket.on('updateChat', function (username, data) {
+            if(username=="SERVER"){
+                $('#msgs').append('<b>'+username + ':</b> ' + data +'<br>');
+            }else{
+                $('#msgs').append('<b class="noServer">'+username + ':</b> ' + data +'<br>');
+            }
+        });
+
+        socket.on('updateUsers', function(usernames) {
+            $('#users-connected').empty();
+            $.each(usernames, function(key, value) {
+                $('#users-connected').append('<div> ----->' + key + '<----- </div>');
+            });
+        });
+    });
+
+</script>
+    </script>
+</head>
+<body>
+    <div id="mainContent">
+        <h1 id="title">Chat whit node.js and Socket.io :D</h1>
+        <div id="buttons">
+            <label>Nickname:</label>
+            <input type"text" id="nickname">
+            <input type="button" value="login" id="buttonLogin" class="buttons">
+            <input type="button" value="logout" id="buttonLogout" class="buttons">
+        </div>
+        <div id="chat">
+            <div id="show-msg">
+                <div id="msgs">
+                </div>
+            </div>
+            <div id="write-msg">
+                <textarea id="msg" disabled></textarea>
+                <input type="submit" value="send" id="send" disabled>
+            </div>
+        </div>
+        <div id="users">
+            <h2>Users Connected</h2>
+            <div id="users-connected">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
