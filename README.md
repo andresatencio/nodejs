@@ -1,6 +1,6 @@
 <html>
 <head>
-	<style type="">
+	<style type="text/css">
 		body
 		{
 			background-color: #3366FF;
