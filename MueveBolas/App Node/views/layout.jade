@@ -1,0 +1,13 @@
+doctype 5
+html
+  head
+  	script(src="/socket.io/socket.io.js")
+  		var socket = io.connect('http://androidapp.aws.af.cm');
+		  socket.on('ejeServer', function (data) {
+		    console.log(data);
+		    document.getElementById('x').innerHTML = data.x
+		  });
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    block content

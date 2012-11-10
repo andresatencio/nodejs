@@ -1,0 +1,84 @@
+
+
+<html>
+<head>
+     <title>Move las bolas</title>
+	<script src="/socket.io/socket.io.js"></script>
+     <style type="text/css">
+
+     a
+     {
+          font-family: Arial;
+          font-size: 1.7em;
+          background-color: #212121;
+          color: #FFF;
+          text-decoration: none;
+          
+     }
+     p
+     {
+          font-family: Arial;
+          font-size: 1.7em;
+          color: #212121;
+          display: block;
+          font-weight: bold;
+     }
+     </style>
+		  
+     <script type="text/javascript" src="http://lib.ivank.net/ivank.js"></script>
+     <script type="text/javascript">
+          var stage, p = new Point(0,0), cur = null;
+
+          var socket = io.connect('http://androidapp.aws.af.cm');
+		  
+          
+          function Start()
+          {
+               stage = new Stage("c");
+               
+               var bd = new BitmapData("/images/bola.png");
+              
+                    var b = new Bitmap(bd);
+                    b.x = 10;
+                    b.y = 15;
+                    b.buttonMode = true;
+                    b.alpha = 0.7;
+                    stage.addChild(b);
+
+                    
+                    socket.on('ejeServer', function (data) {
+					    console.log('EJE X :' + data.x +' EJE Y: '+ data.y);
+					    b.x = Math.abs(data.x) * 25;
+					    b.y = Math.abs(data.y) * 25;
+					  });
+
+                    b.addEventListener(MouseEvent.MOUSE_OVER, onMOv);
+                    b.addEventListener(MouseEvent.MOUSE_OUT , onMOu);
+                    b.addEventListener(MouseEvent.MOUSE_DOWN, onMD );
+                    b.addEventListener(MouseEvent.MOUSE_UP  , onMU );
+               
+               stage.addEventListener(MouseEvent.MOUSE_MOVE, onMM );
+          }
+          
+          function onMOv(e){ e.target.alpha = 1.0; }
+          function onMOu(e){ e.target.alpha = 0.7; }
+          function onMD (e){ cur = e.target; p.x = cur.mouseX; p.y = cur.mouseY; }
+          function onMU (e){ cur = null; }
+          function onMM (e)
+          {
+          	
+
+
+               if(cur == null) return;
+               cur.x = stage.mouseX - p.x;
+               cur.y = stage.mouseY - p.y;
+               console.log('Eje x: '+cur.x);
+               console.log('Eje y: '+cur.y);
+          }
+     </script>
+</head>
+<body onload="Start();">
+
+          <p>(Probado en Android Froyo) Descarga tu <a href='/images/MueveLaBola.apk'> movedor de bola!<a> </p>
+     <canvas id="c"></canvas></body>
+</html>
