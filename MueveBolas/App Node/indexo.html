@@ -1,0 +1,17 @@
+<html>
+<head>
+	<script src="/socket.io/socket.io.js"></script>
+		<script>
+		  var socket = io.connect('http://androidapp.aws.af.cm');
+		  socket.on('ejeServer', function (data) {
+		    console.log(data);
+		    document.getElementById('x').innerHTML = data.x;
+		  });
+		</script>
+	<title>Acelerometro</title>
+</head>
+<body>
+	<label>Eje X:</label>
+	<label id='x'>X</label>
+</body>
+</html>

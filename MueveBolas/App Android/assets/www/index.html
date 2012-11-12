@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <script type="text/javascript" charset="utf-8" src="http://androidapp.aws.af.cm/socket.io/socket.io.js"></script>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Move la Bola</title>
+	  <link rel="stylesheet" href="master.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	  <script type="text/javascript" charset="utf-8" src="phonegap-1.1.0.js"></script>
+	  <script type="text/javascript" charset="utf-8" src="main.js"></script>
+
+  </head>
+  <body onload="init();" id="stage" class="theme">
+    <h1>A mover la bola!</h1>
+    
+    <dl id="accel-data">
+      <dt>X:</dt><dd id="x">&nbsp;</dd>
+      <dt>Y:</dt><dd id="y">&nbsp;</dd>
+      <dt>Z:</dt><dd id="z">&nbsp;</dd>
+    </dl>
+    <a href="#" class="btn large" onclick="toggleAccel();">Conectarse con la bola</a>
+  </body>
+</html>
